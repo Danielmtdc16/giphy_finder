@@ -45,6 +45,27 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
       ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 17.0, right: 8.0, left: 8.0),
+        child: Column(
+          children: const [
+            TextField(
+              decoration: InputDecoration(
+                hintText: "Pesquise por Giphys",
+                enabledBorder: OutlineInputBorder(borderSide: BorderSide(
+                    color: Colors.transparent
+                ),),
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide(
+                    color: Colors.transparent
+                ),),
+                fillColor: Color(0xFFE4E4E4),
+                filled: true,
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
