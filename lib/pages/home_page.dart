@@ -48,24 +48,70 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.only(top: 17.0, right: 8.0, left: 8.0),
         child: Column(
-          children: const [
-            TextField(
+          children: [
+            const TextField(
               decoration: InputDecoration(
                 hintText: "Pesquise por Giphys",
-                enabledBorder: OutlineInputBorder(borderSide: BorderSide(
-                    color: Colors.transparent
-                ),),
-                focusedBorder: OutlineInputBorder(borderSide: BorderSide(
-                    color: Colors.transparent
-                ),),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                ),
                 fillColor: Color(0xFFE4E4E4),
                 filled: true,
                 floatingLabelBehavior: FloatingLabelBehavior.never,
               ),
+              textAlign: TextAlign.center,
+            ),
+            Expanded(
+              child: FutureBuilder(
+                  future: _getGifs(),
+                  builder: (context, snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.waiting:
+                      case ConnectionState.none:
+                        return Container(
+                          width: 200,
+                          height: 200,
+                          alignment: Alignment.center,
+                          child: const CircularProgressIndicator(
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.black),
+                            strokeWidth: 5.0,
+                          ),
+                        );
+                      default:
+                        if (snapshot.hasError)
+                          return Container();
+                        else
+                          return _createGifTable(context, snapshot);
+                    }
+                  }),
             )
           ],
         ),
       ),
+    );
+  }
+
+  Widget _createGifTable(BuildContext context, AsyncSnapshot snapshot) {
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10.0,
+        mainAxisSpacing: 10,
+      ),
+      itemBuilder: (context, index){
+        return GestureDetector(
+          child: Image.network(
+            snapshot.data["data"][index]["images"]["fixed_height"]["url"],
+            height: 300,
+            fit: BoxFit.cover,
+          ),
+        );
+      },
+      itemCount: snapshot.data["data"].length,
     );
   }
 }
