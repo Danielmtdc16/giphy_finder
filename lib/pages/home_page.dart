@@ -46,11 +46,11 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 17.0, right: 8.0, left: 8.0),
+        padding: const EdgeInsets.only(top: 17.0, right: 8.0, left: 8.0, bottom: 10),
         child: Column(
           children: [
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              decoration: const InputDecoration(
                 hintText: "Pesquise por Giphys",
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
@@ -63,6 +63,11 @@ class _HomePageState extends State<HomePage> {
                 floatingLabelBehavior: FloatingLabelBehavior.never,
               ),
               textAlign: TextAlign.center,
+              onSubmitted: (text){
+                setState(() {
+                  _search = text;
+                });
+              },
             ),
             const SizedBox(height: 10,),
             Expanded(
