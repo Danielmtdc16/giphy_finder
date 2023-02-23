@@ -64,6 +64,7 @@ class _HomePageState extends State<HomePage> {
               ),
               textAlign: TextAlign.center,
             ),
+            const SizedBox(height: 10,),
             Expanded(
               child: FutureBuilder(
                   future: _getGifs(),
