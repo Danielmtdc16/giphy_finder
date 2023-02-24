@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
             TextField(
               controller: _controller,
               decoration: const InputDecoration(
-                hintText: "Pesquise por Giphys",
+                labelText: "Pesquise por Giphys",
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                 ),
@@ -73,6 +73,10 @@ class _HomePageState extends State<HomePage> {
                   setState(() {
                     _search = text;
                     _offset = 0;
+                  });
+                } else {
+                  setState(() {
+                    _search = null;
                   });
                 }
               },
