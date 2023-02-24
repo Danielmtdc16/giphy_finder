@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String? _search;
   int _offset = 0;
-
+  final _controller = TextEditingController();
   Future<Map> _getGifs() async {
     http.Response response;
 
@@ -54,6 +54,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             TextField(
+              controller: _controller,
               decoration: const InputDecoration(
                 hintText: "Pesquise por Giphys",
                 enabledBorder: OutlineInputBorder(
@@ -68,10 +69,12 @@ class _HomePageState extends State<HomePage> {
               ),
               textAlign: TextAlign.center,
               onSubmitted: (text) {
-                setState(() {
-                  _search = text;
-                  _offset = 0;
-                });
+                if (_controller.text.isNotEmpty) {
+                  setState(() {
+                    _search = text;
+                    _offset = 0;
+                  });
+                }
               },
             ),
             const SizedBox(
