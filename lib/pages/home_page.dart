@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
             TextField(
               controller: _controller,
               decoration: const InputDecoration(
-                labelText: "Pesquise por Giphys",
+                labelText: "Pesquise por Gifs",
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                 ),
