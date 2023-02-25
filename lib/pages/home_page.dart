@@ -67,7 +67,6 @@ class _HomePageState extends State<HomePage> {
                 filled: true,
                 floatingLabelBehavior: FloatingLabelBehavior.never,
               ),
-              textAlign: TextAlign.center,
               onSubmitted: (text) {
                 if (_controller.text.isNotEmpty) {
                   setState(() {
